@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Palette Studio</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header>
+  <h1>Palette Studio</h1>
+  <p>Outer ring: hue &middot; Inner circle: saturation &amp; brightness</p>
+</header>
+
+<div class="app">
+
+  <div class="left-panel">
+    <div class="wheel-card">
+      <div class="wheel-wrap" id="wheelWrap">
+        <canvas id="wheelCanvas" width="240" height="240"></canvas>
+        <div id="wheelCursor"></div>
+        <div id="innerCursor"></div>
+      </div>
+      <div class="ring-hint">
+        Drag outer ring to choose hue<br>
+        Drag inner circle for saturation &amp; brightness
+      </div>
+      <div class="selected-color">
+        <div class="selected-swatch" id="selectedSwatch"></div>
+        <div class="selected-hex" id="selectedHex">#C8502A</div>
+      </div>
+    </div>
+
+    <div class="controls-card">
+      <div>
+        <div class="section-label">Mood / Keyword</div>
+        <input type="text" id="moodInput" placeholder="sunset, ocean, forest, dusk…" />
+      </div>
+      <div>
+        <div class="section-label">Harmony Mode</div>
+        <div class="mode-grid">
+          <button class="mode-btn active" data-mode="analogous" onclick="setMode(this)">Analogous</button>
+          <button class="mode-btn" data-mode="complementary" onclick="setMode(this)">Complement</button>
+          <button class="mode-btn" data-mode="triadic" onclick="setMode(this)">Triadic</button>
+          <button class="mode-btn" data-mode="split" onclick="setMode(this)">Split-comp</button>
+          <button class="mode-btn span-2" data-mode="monochromatic" onclick="setMode(this)">Monochromatic</button>
+        </div>
+      </div>
+      <button class="generate-btn" onclick="generate()">Generate Palette</button>
+    </div>
+  </div>
+
+  <div class="right-panel">
+    <div class="palette-card">
+      <div class="palette-header">
+        <span class="palette-title">Your palette</span>
+        <span class="palette-mode-tag" id="modeTag">Analogous</span>
+      </div>
+      <div id="paletteInner" class="palette-inner">
+        <div class="empty-palette">
+          Drag the outer ring to pick a hue<br>
+          drag the inner circle to adjust tone<br>
+          then hit Generate
+        </div>
+      </div>
+    </div>
+
+    <div class="hex-row-card" id="hexRowCard" style="display:none">
+      <div class="section-label">Click any chip to copy hex</div>
+      <div class="hex-chips" id="hexChips"></div>
+    </div>
+  </div>
+
+</div>
+
+<div class="toast-wrap">
+  <div class="toast" id="toast"></div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
